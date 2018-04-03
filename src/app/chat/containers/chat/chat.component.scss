@@ -1,0 +1,8 @@
+:host {
+  overflow-y: auto;
+
+  .message-item {
+    border: 1px solid dimgray;
+    margin: 10px;
+  }
+}

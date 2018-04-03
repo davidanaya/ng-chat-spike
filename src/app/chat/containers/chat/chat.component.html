@@ -1,0 +1,9 @@
+<mat-list *ngIf="messages; else loading" class="messages-list">
+  <mat-list-item *ngFor="let message of messages; index as i" class="message-item">
+    <div matLine #topic *ngIf="i === 0 || message.topic !== messages[i - 1].topic">{{ message.topic }}</div>
+    <app-chat-message matLine [ngClass]="{'first': i === 0}" [message]="message"></app-chat-message>
+  </mat-list-item>
+</mat-list>
+<ng-template #loading>
+  Loading...
+</ng-template>
