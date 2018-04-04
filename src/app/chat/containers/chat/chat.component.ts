@@ -9,7 +9,5 @@ import { IChatMessage } from "../../services/chat.service";
 export class ChatComponent implements OnInit {
   @Input() messages: IChatMessage[];
 
-  ngOnInit() {
-    console.log("messages in chart", this.messages);
-  }
+  ngOnInit() {}
 }

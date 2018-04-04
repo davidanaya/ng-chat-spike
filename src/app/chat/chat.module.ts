@@ -12,21 +12,12 @@ import { ChatMessageComponent } from "./components/chat-message/chat-message.com
 
 // services
 import { ChatService } from "./services/chat.service";
-import { DomIntersectionService } from "./services/dom-intersection.service";
-import { DomTopicIntersectionService } from "./services/dom-topic-intersection.service";
-import { TestService } from "./services/test.service";
 
 const materialImports = [MatButtonModule, MatListModule, MatCardModule, MatToolbarModule];
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, ChatRoutingModule, ...materialImports],
-  providers: [
-    DatePipe,
-    ChatService,
-    DomIntersectionService,
-    DomTopicIntersectionService,
-    { provide: "testService", useFactory: () => () => new TestService() }
-  ],
+  providers: [DatePipe, ChatService],
   declarations: [ChatDashboardComponent, ChatComponent, ChatMessageComponent]
 })
 export class ChatModule {}

@@ -12,10 +12,6 @@ const routes: Routes = [
     loadChildren: "./chat/chat.module#ChatModule"
   },
   {
-    path: "landing",
-    loadChildren: "./landing/landing.module#LandingModule"
-  },
-  {
     path: "**",
     redirectTo: "chat"
   }

@@ -11,7 +11,7 @@ import { ChatService, IChatMessage } from "../../services/chat.service";
   styleUrls: ["./chat-dashboard.component.scss"]
 })
 export class ChatDashboardComponent implements OnInit {
-  messages$: Observable<IChatMessage[]> = this.chatService.messagesLoaded$.pipe(tap(messages => console.log("AAA", messages)));
+  messages$ = this.chatService.messagesLoaded$;
 
   topic = "welcome";
 
@@ -23,7 +23,6 @@ export class ChatDashboardComponent implements OnInit {
   constructor(private chatService: ChatService) {}
 
   ngOnInit() {
-    console.log(this.messages$);
     this.addFakeMessage({ text: "hi there!", topic: this.topic });
   }
 
