@@ -1,7 +1,7 @@
 <mat-toolbar class="chat-title">
-  <span>{{ (navigationTopic$ | async) || topic }}</span>
+  <span>{{ topic }}</span>
 </mat-toolbar>
-<app-chat class="chat-messages" [messages]="messages$ | async" (load)="loadMoreMessages()"></app-chat>
+<app-chat class="chat-messages" [messages]="messages$ | async"></app-chat>
 <mat-toolbar class="chat-input">
   <button mat-raised-button (click)="addFakeMessage()">add message</button>
   <button mat-raised-button (click)="changeFakeTopic()">change topic</button>

@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
+import { tap } from "rxjs/operators";
 
 import { ChatService, IChatMessage } from "../../services/chat.service";
-import { DomTopicIntersectionService } from "../../services/dom-topic-intersection.service";
-import { Subscription } from "rxjs/Subscription";
 
 @Component({
   selector: "app-chat-dashboard",
@@ -12,24 +11,19 @@ import { Subscription } from "rxjs/Subscription";
   styleUrls: ["./chat-dashboard.component.scss"]
 })
 export class ChatDashboardComponent implements OnInit {
-  messages$: Observable<IChatMessage[]> = this.chatService.messagesLoaded$;
+  messages$: Observable<IChatMessage[]> = this.chatService.messagesLoaded$.pipe(tap(messages => console.log("AAA", messages)));
 
   topic = "welcome";
-  navigationTopic$ = this.domTopicIntersectionService.topicInView$;
-
-  private subscription: Subscription;
 
   private defaultMessage: IChatMessage = {
     text: "message",
     topic: this.topic
   };
 
-  constructor(
-    private chatService: ChatService,
-    private domTopicIntersectionService: DomTopicIntersectionService
-  ) {}
+  constructor(private chatService: ChatService) {}
 
   ngOnInit() {
+    console.log(this.messages$);
     this.addFakeMessage({ text: "hi there!", topic: this.topic });
   }
 
@@ -47,6 +41,6 @@ export class ChatDashboardComponent implements OnInit {
     for (let i = 0; i < 5; i++) {
       messages.push({ ...this.defaultMessage, timestamp: Date.now() });
     }
-    this.chatService.loadMessages(messages);
+    this.chatService.addMessages(messages);
   }
 }
